@@ -1,0 +1,28 @@
+<div class="container" hx-target="this" hx-swap="outerHTML">
+  <div class="card {% if todo.completed %}strike{% endif %}">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-3">{{todo.title}}</div>
+        <div class="col-6">{{todo.description}}</div>
+        <div class="col-3">
+          <button
+            type="button"
+            class="btn btn-success"
+            hx-get="{{ url_for('put', id=todo.id) }}"
+            hx-swap="outerHTML"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            hx-delete="{{ url_for('delete', id=todo.id) }}"
+            hx-swap="outerHTML swap:1s"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

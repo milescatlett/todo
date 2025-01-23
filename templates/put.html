@@ -1,0 +1,64 @@
+<div class="container" hx-target="this" hx-swap="outerHTML">
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col">
+            <input
+              name="title"
+              type="text"
+              class="form-control"
+              id="title"
+              placeholder="Title"
+              value="{{todo.title}}"
+            />
+          </div>
+          <div class="col">
+            <input
+              name="description"
+              type="text"
+              class="form-control"
+              id="description"
+              placeholder="Description"
+              value="{{todo.description}}"
+            />
+          </div>
+          <div class="col">
+            <input
+              name="completed"
+              class="form-check-input"
+              type="checkbox"
+              value="True"
+              {%
+              if
+              todo.completed
+              %}checked{%
+              endif
+              %}
+              id="completed-{{todo.id}}"
+            />
+            <label class="form-check-label" for="completed-{{todo.id}}">
+              Completed
+            </label>
+          </div>
+          <div class="col">
+            <button
+              type="button"
+              class="btn btn-primary"
+              hx-put="{{ url_for('put', id=todo.id) }}"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              hx-get="{{ url_for('get_one', id=todo.id) }}"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
